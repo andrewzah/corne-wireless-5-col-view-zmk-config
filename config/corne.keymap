@@ -53,7 +53,7 @@
         mm_tab_layer: modmorph_tab_layer {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&mo NUMS TAB>, <&kp TAB>;
+            bindings = <&mo NUMS TAB>, <&kp CAPS>;
             mods = <(MOD_RCTL|MOD_RSFT)>;
         };
 
