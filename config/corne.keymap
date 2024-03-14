@@ -50,12 +50,12 @@
             mods = <(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT)>;
         };
 
-        mm_tab_layer: modmorph_tab_layer {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&mo NUMS TAB>, <&kp CAPS>;
-            mods = <(MOD_RCTL|MOD_RSFT)>;
-        };
+        //mm_tab_layer: modmorph_tab_layer {
+        //    compatible = "zmk,behavior-mod-morph";
+        //    #binding-cells = <0>;
+        //    bindings = <&mo NUMS TAB>, <&kp CAPS>;
+        //    mods = <(MOD_RCTL|MOD_RSFT)>;
+        //};
 
         mm_bspc_del_layer: modmorph_bspc_del_layer {
             compatible = "zmk,behavior-mod-morph";
@@ -148,7 +148,7 @@
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
        &kp Z                 &kp X                 &kp C                 &kp V                 &kp B                     &kp N                 &kp M                 &kp COMMA             &kp PERIOD            &kp DOT
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
-                                                   &mm_tab_layer         &mm_bspc_del_layer    &mm_spc_unds_layer        &mm_enter_return      &mo SYMS              &mm_gresc
+                                                   &kp TAB               &mm_bspc_del_layer    &mm_spc_unds_layer        &mm_enter_return      &mo SYMS              &mm_gresc
   //                                             ╰─────────────────────┴─────────────────────┴─────────────────────╯   ╰─────────────────────┴─────────────────────┴─────────────────────╯
                         >;
                 };
