@@ -8,6 +8,10 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define HM_TAPPING_TERM 300
+#define HM_TAPPING_TERM_FAST 200
+#define HM_PRIOR_IDLE 150
+
 #define KEYS_L 0 1 2 3 4 10 11 12 13 14 20 21 22
 #define KEYS_R 5 6 7 8 9 15 16 17 18 19 23 24 25
 
@@ -16,29 +20,113 @@
 #define MISC 2
 #define SYMS 3
 
+&lt {
+     flavor = "balanced";
+    tapping-term-ms = <300>;
+
+    // Quickly tap-tap-holding the lt button will repeat the tap behavior
+    // For example enter-enter-hold, will output multiple enter while you
+    // keep holding the key.
+    // But holding enter without double tapping, will activate the layer.
+     quick-tap-ms = <200>;
+};
+&caps_word {
+    continue-list = <
+      UNDERSCORE MINUS
+      LCTRL LALT LGUI LSHFT
+      RCTRL RALT RGUI RSHFT
+      BACKSPACE
+    >;
+};
+
 / {
     chosen {
       zmk,matrix_transform = &five_column_transform;
     };
 
     behaviors {
-        hm: homerow_mod {
-            compatible = "zmk,behavior-hold-tap";
-            flavor = "tap-unless-interrupted";
-            #binding-cells = <2>;
-            tapping_term_ms = <100>;
-            quick_tap_ms = <200>;
-            bindings = <&kp>, <&kp>;
-            //hold-trigger-key-positions = <KEYS_R>;
+        mm_gresc: grave_escape {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&kp GRAVE>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_LCTRL|MOD_LALT)>;
         };
 
-        tt: test {
+        mm_bspc_del_layer: modmorph_bspc_del_layer {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mo NUMS BSPC>, <&kp DEL>;
+            mods = <(MOD_RCTRL|MOD_RSFT)>;
+        };
+
+        mm_spc_unds_layer: modmorph_space_underscore_layer {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mo MISC SPACE>, <&kp MINUS>;
+            mods = <(MOD_RCTRL|MOD_RSFT)>;
+            keep-mods = <(MOD_LSFT)>;
+        };
+
+        mm_enter_return: modmorph_enter_return_layer {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&mo SYMS RET>, <&kp RET2>;
+            mods = <(MOD_LSFT|MOD_LCTRL)>;
+        };
+
+        hm_l: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
-            flavor = "tap-unless-interrupted";
             #binding-cells = <2>;
-            tapping_term_ms = <100>;
-            quick_tap_ms = <200>;
-            bindings = <&mo>, <&kp>;
+            bindings = <&kp>,  <&kp>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <175>;                // repeat on tap-into-hold
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+
+            hold-trigger-key-positions = <KEYS_R KEYS_T>;
+            hold-trigger-on-release;
+        };
+
+        hm_r: homerow_mods_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+
+            hold-trigger-key-positions = <KEYS_L KEYS_T>;
+            hold-trigger-on-release;
+        };
+
+        hm_shift_l: hm_shift_l {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+
+            hold-trigger-key-positions = <KEYS_R KEYS_T>;
+        };
+
+        hm_shift_r: hm_shift_r {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+
+            hold-trigger-key-positions = <KEYS_L KEYS_T>;
+            // hold-trigger-on-release;
         };
     };
 
@@ -48,15 +136,15 @@
                 default_layer {
                         display-name = "BASE";
                         bindings = <
-  // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-       &kp Q         &kp W         &kp E         &kp R         &kp T             &kp Y         &kp U         &kp I         &kp O         &kp P
-  // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-       &hm LGUI A    &hm LALT S    &hm LSHIFT D  &hm LCTRL F   &kp G             &kp H         &hm LCTRL J   &hm LSHIFT K  &hm LALT L    &hm RGUI SEMI
-  // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-       &kp Z         &kp X         &kp C         &kp V         &kp B             &kp N         &kp M         &kp COMMA     &kp PERIOD    &kp DOT
-  // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-                                &tt MISC TAB   &tt NUMS BSPC  &kp SPACE         &kp RET         &mo 3          &kp ESC
-  //                          ╰──────────────┴──────────────┴──────────────╯   ╰──────────────┴──────────────┴──────────────╯
+  // ╭─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────╮   ╭─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────╮
+       &kp Q                 &kp W                 &kp E                 &kp R                 &kp T                     &kp Y                 &kp U                 &kp I                 &kp O                 &kp P
+  // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
+       &hm_l LGUI A          &hm_l LALT S          &hm_shift_l LSHIFT D  &hm_l LCTRL F         &kp G                     &kp H                 &hm_r LCTRL J         &hm_shift_r LSHIFT K  &hm_r LALT L          &hm RGUI SEMI
+  // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
+       &kp Z                 &kp X                 &kp C                 &kp V                 &kp B                     &kp N                 &kp M                 &kp COMMA             &kp PERIOD            &kp DOT
+  // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
+                                                   &tt MISC TAB          &mm_bspc_del_layer    &mm_spc_unds_layer        &mm_enter_return      &mo 3                 &mm_gresc
+  //                                             ╰─────────────────────┴─────────────────────┴─────────────────────╯   ╰─────────────────────┴─────────────────────┴─────────────────────╯
                         >;
                 };
 
@@ -107,3 +195,5 @@
                 };
         };
 };
+
+// vim: set syntax=dts:
