@@ -49,21 +49,21 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>;
-            mods = <(MOD_LGUI|MOD_LSFT|MOD_LCTRL|MOD_LALT)>;
+            mods = <(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT)>;
         };
 
         mm_bspc_del_layer: modmorph_bspc_del_layer {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mo NUMS BSPC>, <&kp DEL>;
-            mods = <(MOD_RCTRL|MOD_RSFT)>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
         };
 
         mm_spc_unds_layer: modmorph_space_underscore_layer {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mo MISC SPACE>, <&kp MINUS>;
-            mods = <(MOD_RCTRL|MOD_RSFT)>;
+            mods = <(MOD_RCTL|MOD_RSFT)>;
             keep-mods = <(MOD_LSFT)>;
         };
 
@@ -71,7 +71,7 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&mo SYMS RET>, <&kp RET2>;
-            mods = <(MOD_LSFT|MOD_LCTRL)>;
+            mods = <(MOD_LSFT|MOD_LCTL)>;
         };
 
         hm_l: homerow_mods_left {
@@ -139,11 +139,11 @@
   // ╭─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────╮   ╭─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────┬─────────────────────╮
        &kp Q                 &kp W                 &kp E                 &kp R                 &kp T                     &kp Y                 &kp U                 &kp I                 &kp O                 &kp P
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
-       &hm_l LGUI A          &hm_l LALT S          &hm_shift_l LSHIFT D  &hm_l LCTRL F         &kp G                     &kp H                 &hm_r LCTRL J         &hm_shift_r LSHIFT K  &hm_r LALT L          &hm RGUI SEMI
+       &hm_l LGUI A          &hm_l LALT S          &hm_shift_l LSHIFT D  &hm_l LCTRL F         &kp G                     &kp H                 &hm_r LCTRL J         &hm_shift_r LSHIFT K  &hm_r LALT L          &hm_r RGUI SEMI
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
        &kp Z                 &kp X                 &kp C                 &kp V                 &kp B                     &kp N                 &kp M                 &kp COMMA             &kp PERIOD            &kp DOT
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
-                                                   &tt MISC TAB          &mm_bspc_del_layer    &mm_spc_unds_layer        &mm_enter_return      &mo 3                 &mm_gresc
+                                                   &tt MISC TAB          &mm_bspc_del_layer    &mm_spc_unds_layer        &mm_enter_return      &mo SYMS              &mm_gresc
   //                                             ╰─────────────────────┴─────────────────────┴─────────────────────╯   ╰─────────────────────┴─────────────────────┴─────────────────────╯
                         >;
                 };
