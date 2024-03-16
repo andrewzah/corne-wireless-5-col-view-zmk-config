@@ -30,7 +30,14 @@
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>;
-            mods = <(MOD_LGUI|MOD_LSFT|MOD_LCTL|MOD_LALT)>;
+            mods = <(MOD_LSFT|MOD_LCTL)>;
+        };
+
+        mm_tab_tilde: tab_tilde {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp TAB>, <&kp TILDE>;
+            mods = <(MOD_LSFT|MOD_LCTL)>;
         };
 
         mm_tab_layer: modmorph_tab_layer {
@@ -53,6 +60,14 @@
             bindings = <&lt MISC SPACE>, <&kp MINUS>;
             mods = <(MOD_RCTL|MOD_RSFT)>;
             keep-mods = <(MOD_LSFT)>;
+        };
+
+        mm_rspc_unds_layer: modmorph_rspace_underscore_layer {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&lt SYMS SPACE>, <&kp MINUS>;
+            mods = <(MOD_LCTL|MOD_LSFT)>;
+            keep-mods = <(MOD_RSFT)>;
         };
 
         mm_enter_return: modmorph_enter_return_layer {
@@ -131,7 +146,7 @@
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
        &kp Z                 &kp X                 &kp C                 &kp V                 &kp B                     &kp N                 &kp M                 &kp COMMA             &kp PERIOD            &kp DOT
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
-                                                   &kp TAB               &mm_bspc_del_layer    &mm_spc_unds_layer        &mm_enter_return      &mo SYMS              &mm_gresc
+                                                   &mm_tab_tilde         &mm_spc_unds_layer    &mm_bspc_del_layer        &mm_enter_return      &mm_rspc_unds_layer   &mm_gresc
   //                                             ╰─────────────────────┴─────────────────────┴─────────────────────╯   ╰─────────────────────┴─────────────────────┴─────────────────────╯
                         >;
                 };
