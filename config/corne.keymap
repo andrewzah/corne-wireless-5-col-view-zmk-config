@@ -50,14 +50,14 @@
         mm_bspc_del_layer: modmorph_bspc_del_layer {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&lt NUMS BSPC>, <&kp DEL>;
+            bindings = <&lt MISC BSPC>, <&kp DEL>;
             mods = <(MOD_RCTL|MOD_RSFT)>;
         };
 
         mm_spc_unds_layer: modmorph_space_underscore_layer {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&lt MISC SPACE>, <&kp MINUS>;
+            bindings = <&lt NUMS SPACE>, <&kp MINUS>;
             mods = <(MOD_RCTL|MOD_RSFT)>;
             keep-mods = <(MOD_LSFT)>;
         };
@@ -73,7 +73,7 @@
         mm_enter_return: modmorph_enter_return_layer {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&lt SYMS RET>, <&kp RET2>;
+            bindings = <&kp RET>, <&kp RET2>;
             mods = <(MOD_LSFT|MOD_LCTL)>;
         };
 
