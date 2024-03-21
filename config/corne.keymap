@@ -11,14 +11,15 @@
 #include "keypos_36keys.h"
 #include "settings.dtsi"
 
-#define HM_TAPPING_TERM 300
-#define HM_TAPPING_TERM_FAST 200
+#define HM_TAPPING_TERM 250
+#define HM_TAPPING_TERM_FAST 150
 #define HM_PRIOR_IDLE 150
 
 #define BASE 0
 #define NUMS 1
 #define MISC 2
 #define SYMS 3
+#define BT   4
 
 / {
     chosen {
@@ -70,7 +71,7 @@
             keep-mods = <(MOD_RSFT)>;
         };
 
-        mm_enter_return: modmorph_enter_return_layer {
+        mm_enter_return: modmorph_enter_return {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp RET>, <&kp RET2>;
@@ -144,9 +145,9 @@
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
        &hm_l LGUI A          &hm_l LALT S          &hm_shift_l LSHIFT D  &hm_l LCTRL F         &kp G                     &kp H                 &hm_r RCTRL J         &hm_shift_r RSHIFT K  &hm_r RALT L          &hm_r RGUI SEMI
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
-       &kp Z                 &kp X                 &kp C                 &kp V                 &kp B                     &kp N                 &kp M                 &kp COMMA             &kp PERIOD            &kp FSLH
+       &kp Z                 &kp X                 &kp C                 &kp V                 &kp B                     &kp N                 &kp M                 &kp COMMA             &kp PERIOD            &lt BT FSLH
   // ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤   ├─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┼─────────────────────┤
-                                                   &mm_tab_tilde         &mm_spc_unds_layer    &mm_bspc_del_layer        &mm_enter_return      &mm_rspc_unds_layer   &mm_gresc
+                                                   &mm_spc_unds_layer    &mm_tab_tilde         &mm_bspc_del_layer        &mm_rspc_unds_layer   &mm_enter_return      &mm_gresc
   //                                             ╰─────────────────────┴─────────────────────┴─────────────────────╯   ╰─────────────────────┴─────────────────────┴─────────────────────╯
                         >;
                 };
@@ -175,9 +176,9 @@
   // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
        &trans        &trans        &trans        &trans        &trans            &kp END       &kp LEFT      &kp DOWN      &kp RIGHT     &kp RET2
   // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-       &trans        &trans        &trans        &trans        &trans            &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+       &trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
   // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-                                   &trans        &trans        &trans            &trans        &trans        &bt BT_CLR
+                                   &trans        &trans        &trans            &trans        &trans        &trans
   //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                         >;
                 };
@@ -193,6 +194,21 @@
        &trans        &trans        &kp LPAR      &kp RPAR      &kp BSLH          &trans        &trans        &trans        &trans        &trans
   // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
                                    &trans        &trans        &trans            &trans        &trans        &trans
+  //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
+                        >;
+                };
+
+                symbol_layer {
+                        display-name = "BT";
+                        bindings = <
+  // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+       &trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
+  // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+       &trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
+  // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+       &bt BT_SEL_0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4      &trans        &trans        &trans        &trans        &trans
+  // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+                                   &bt BT_CLR    &trans        &trans            &trans        &trans        &trans
   //                             ╰─────────────┴─────────────┴─────────────╯   ╰─────────────┴─────────────┴─────────────╯
                         >;
                 };
