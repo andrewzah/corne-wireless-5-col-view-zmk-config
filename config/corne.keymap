@@ -6,7 +6,7 @@
 #include "keypos_36keys.h"
 #include "settings.dtsi"
 
-#define HM_TAPPING_TERM 250
+#define HM_TAPPING_TERM 200
 #define HM_TAPPING_TERM_FAST 150
 #define HM_PRIOR_IDLE 150
 
