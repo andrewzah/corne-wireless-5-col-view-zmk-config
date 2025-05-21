@@ -4,11 +4,11 @@
 #include <dt-bindings/zmk/ext_power.h>
 
 #include "keypos_36keys.h"
-#include "settings.dtsi"
 
-#define HM_TAPPING_TERM 200
-#define HM_TAPPING_TERM_FAST 150
+#define HM_TAPPING_TERM 300
+#define HM_TAPPING_TERM_FAST 200
 #define HM_PRIOR_IDLE 150
+#define QUICK_TAP_MS 175
 
 #define BASE 0
 #define NUMS 1
@@ -16,6 +16,35 @@
 #define SYMS 3
 #define BT   4
 #define FUNC 5
+
+&sk {
+  release-after-ms = <900>;
+  quick-release;
+};
+
+&sl { // Allow sticky mods to chord across sticky layers.
+  ignore-modifiers;
+};
+
+&lt {
+  flavor = "balanced";
+  tapping-term-ms = <200>;
+  quick-tap-ms = <QUICK_TAP_MS>;
+};
+
+&mt {
+  flavor = "balanced";
+  quick-tap-ms = <QUICK_TAP_MS>;
+};
+
+&caps_word {
+  continue-list = <
+    UNDERSCORE MINUS
+    LCTRL LALT LGUI LSHFT
+    RCTRL RALT RGUI RSHFT
+    BACKSPACE
+  >;
+};
 
 / {
     chosen {
@@ -66,7 +95,8 @@
 
             flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <175>;                // repeat on tap-into-hold
+            quick-tap-ms = <QUICK_TAP_MS>; // repeat on tap-into-hold
+            global-quick-tap-ms = <75>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
 
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
@@ -80,7 +110,8 @@
 
             flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <175>;
+            quick-tap-ms = <QUICK_TAP_MS>;
+            global-quick-tap-ms = <75>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
 
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
@@ -94,7 +125,7 @@
 
             flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM_FAST>;
-            quick-tap-ms = <175>;
+            quick-tap-ms = <QUICK_TAP_MS>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
 
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
@@ -107,7 +138,7 @@
 
             flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM_FAST>;
-            quick-tap-ms = <175>;
+            quick-tap-ms = <QUICK_TAP_MS>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
 
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
