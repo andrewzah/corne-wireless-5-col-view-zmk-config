@@ -96,7 +96,7 @@
             flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <QUICK_TAP_MS>; // repeat on tap-into-hold
-            global-quick-tap-ms = <75>;
+            //global-quick-tap-ms = <75>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
 
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
@@ -111,7 +111,7 @@
             flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <QUICK_TAP_MS>;
-            global-quick-tap-ms = <75>;
+            //global-quick-tap-ms = <75>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
 
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
